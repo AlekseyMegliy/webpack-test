@@ -1,24 +1,16 @@
 import _ from "lodash";
-import "./style.css";
-import Icon from "./icon.svg";
-import Data from "./data.xml";
-import Notes from "./data.csv";
+import head from "./header.js";
+import foot from "./footer.js";
 
-function component() {
-  const element = document.createElement("div");
+const header = document.createElement("header");
+header.innerHTML = head;
 
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(["Hello", "webpack"], " ");
-  element.classList.add("hello");
-  // Add the image to our existing div.
-  const myIcon = new Image();
-  myIcon.src = Icon;
+const element = document.createElement("div");
+element.innerHTML = _.join(["I am", "index"], " ");
 
-  element.appendChild(myIcon);
-  console.log(Data);
-  console.log(Notes);
+const footer = document.createElement("footer");
+footer.innerHTML = foot;
 
-  return element;
-}
-
-document.body.appendChild(component());
+document.body.appendChild(header);
+document.body.appendChild(element);
+document.body.appendChild(footer);

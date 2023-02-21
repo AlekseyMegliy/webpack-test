@@ -1,33 +1,28 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/index.js",
-  output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
+  mode: "production",
+  entry: {
+    app: "./src/index.js",
   },
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+  optimization: {
+    mangleWasmImports: true,
+    moduleIds: "deterministic",
+    removeAvailableModules: true,
+    providedExports: false,
+    sideEffects: true,
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendor",
+          chunks: "all",
+        },
       },
-      {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: "asset/resource",
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: "asset/resource",
-      },
-      {
-        test: /\.(csv|tsv)$/i,
-        use: ["csv-loader"],
-      },
-      {
-        test: /\.xml$/i,
-        use: ["xml-loader"],
-      },
-    ],
+    },
+  },
+  output: {
+    filename: "[name].bundle.js",
+    path: path.resolve(__dirname, "dist"),
   },
 };
