@@ -1,9 +1,11 @@
 import _ from "lodash";
 import head from "./header.js";
 import foot from "./footer.js";
+import "./styles/header.scss";
 
 const header = document.createElement("header");
 header.innerHTML = head;
+header.classList.add("time");
 
 const element = document.createElement("div");
 element.innerHTML = _.join(["I am", "index"], " ");
